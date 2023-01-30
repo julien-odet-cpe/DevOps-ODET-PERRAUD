@@ -1,13 +1,26 @@
-# On se donne les permissions requises
-newgrp docker
+# TP DevOps - Compte rendu
 
-# On teste la bonne installation de Docker
-docker run hello-world
+Filière IRC - 4ème année - Promotion 2024
 
-# On télécharge la dernière image Alpine depuis le repository Docker
-docker pull alpine
+## Auteur :
+- Julien ODET
+- Alex PERRAUD
 
-# Docker images
+---
+
+## Questions
+### 1-1) Document your database container essentials: commands and Dockerfile.
+> 
+
+### 1-2) Why do we need a multistage build? And explain each step of this dockerfile.
+> 
+
+### 1-3) Document docker-compose most important commands. 1-4 Document your docker-compose file.
+>
+
+### 1-5) Document your publication commands and published images in dockerhub.
+>
+
 
 alexdev@MC-G7V9THG2MC java % docker run --name pgdb -p 5432:5432 -v volume:/var/lib/postgresql/data --net=app-network -d  pgdb
 
