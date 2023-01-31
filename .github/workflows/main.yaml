@@ -20,4 +20,4 @@ jobs:
             distribution: "adopt"
       #finally build your app with the latest command
       - name: Build and test with Maven
-        run: ./java/backendapi/simple-api-student-main && mvn clean install -DskipTests=true
+        run: ./java/backendapi/simple-api-student-main && mvn clean install
