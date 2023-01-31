@@ -47,7 +47,7 @@ jobs:
         with:
           # relative path to the place where source code with Dockerfile is located
           context: ./postgres
-          # Note: tags has to be all lower-case
+          #Note: tags has to be all lower-case
           tags: ${{secrets.DOCKER_LOGIN}}/tp-devops/database
 
 
