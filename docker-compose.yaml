@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  backend:
+    build: ./java/backendapi/Dockerfile
+    networks:
+      - app-network
+
+    depends_on: database
+
+  database:
+    build: ./postgres/DOCKERFILE
+    volumes:
+      - ./postgres/db-data:/var/lib/postgresql/data:rw
+    networks:
+      - app-network
+
+  httpd:
+    build: ./http/Dockerfile
+    ports:
+      - "80:8080"
+    networks:
+      - app-network
+    depends_on: backend
+
+
+networks:
+  app-network:
+    name: app-network
+    external: true
