@@ -65,7 +65,7 @@ jobs:
           # relative path to the place where source code with Dockerfile is located
           context: ./simple-api
           # Note: tags has to be all lower-case
-          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops/simple-api
+          tags: ${{secrets.DOCKER_USERNAME}}/simple-api
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
       - name: Build image and push backend
@@ -74,7 +74,7 @@ jobs:
           # relative path to the place where source code with Dockerfile is located
           context: ./http
           # Note: tags has to be all lower-case
-          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops:http
+          tags: ${{secrets.DOCKER_USERNAME}}/http
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
@@ -84,6 +84,6 @@ jobs:
           # relative path to the place where source code with Dockerfile is located
           context: ./postgres
           # Note: tags has to be all lower-case
-          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops:database
+          tags: ${{secrets.DOCKER_USERNAME}}/database
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
