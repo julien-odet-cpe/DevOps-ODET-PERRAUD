@@ -29,9 +29,10 @@ jobs:
 
     # steps to perform in job
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.5.0
       - name: Login to DockerHub
         run: docker login -u ${{ secrets.DOCKER_LOGIN }} -p ${{ secrets.DOCKER_PASSWORD }}
-               
                
       - name: Build image and push backend
         uses: docker/build-push-action@v3
@@ -47,7 +48,7 @@ jobs:
           # relative path to the place where source code with Dockerfile is located
           context: ./postgres
           # Note: tags has to be all lower-case
-          tags: ${{secrets.DOCKER_LOGIN}}/tp-devops/simple-api
+          tags: ${{secrets.DOCKER_LOGIN}}/tp-devops/database
 
 
       - name: Build image and push httpd
@@ -56,5 +57,5 @@ jobs:
           # relative path to the place where source code with Dockerfile is located
           context: ./http
           # Note: tags has to be all lower-case
-          tags: ${{secrets.DOCKER_LOGIN}}/tp-devops/simple-api
+          tags: ${{secrets.DOCKER_LOGIN}}/tp-devops/http
         # DO the same for httpd
