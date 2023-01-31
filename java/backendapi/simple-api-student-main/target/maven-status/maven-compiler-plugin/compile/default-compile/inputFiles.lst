@@ -1,0 +1,10 @@
+/Users/alexdev/projects/4IRC/DevOps-ODET-PERRAUD/tp-docker/java/backendapi/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/entity/Department.java
+/Users/alexdev/projects/4IRC/DevOps-ODET-PERRAUD/tp-docker/java/backendapi/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/controller/StudentController.java
+/Users/alexdev/projects/4IRC/DevOps-ODET-PERRAUD/tp-docker/java/backendapi/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/service/StudentService.java
+/Users/alexdev/projects/4IRC/DevOps-ODET-PERRAUD/tp-docker/java/backendapi/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/entity/Student.java
+/Users/alexdev/projects/4IRC/DevOps-ODET-PERRAUD/tp-docker/java/backendapi/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/dao/StudentDAO.java
+/Users/alexdev/projects/4IRC/DevOps-ODET-PERRAUD/tp-docker/java/backendapi/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/dao/DepartmentDAO.java
+/Users/alexdev/projects/4IRC/DevOps-ODET-PERRAUD/tp-docker/java/backendapi/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/SimpleApiApplication.java
+/Users/alexdev/projects/4IRC/DevOps-ODET-PERRAUD/tp-docker/java/backendapi/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/controller/DepartmentController.java
+/Users/alexdev/projects/4IRC/DevOps-ODET-PERRAUD/tp-docker/java/backendapi/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/service/DepartmentService.java
+/Users/alexdev/projects/4IRC/DevOps-ODET-PERRAUD/tp-docker/java/backendapi/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/controller/GreetingController.java
