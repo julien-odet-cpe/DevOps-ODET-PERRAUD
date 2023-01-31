@@ -59,3 +59,31 @@ jobs:
           # Note: tags has to be all lower-case
           tags: ${{secrets.DOCKER_LOGIN}}/tp-devops/http
         # DO the same for httpd
+      - name: Build image and push backend
+        uses: docker/build-push-action@v3
+        with:
+          # relative path to the place where source code with Dockerfile is located
+          context: ./simple-api
+          # Note: tags has to be all lower-case
+          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops:simple-api
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' }}
+      - name: Build image and push backend
+        uses: docker/build-push-action@v3
+        with:
+          # relative path to the place where source code with Dockerfile is located
+          context: ./http
+          # Note: tags has to be all lower-case
+          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops:http
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Build image and push backend
+        uses: docker/build-push-action@v3
+        with:
+          # relative path to the place where source code with Dockerfile is located
+          context: ./postgres
+          # Note: tags has to be all lower-case
+          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops:database
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' }}
