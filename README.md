@@ -12,7 +12,7 @@ Filière IRC - 4ème année - Promotion 2024
 Il s'agit de build l'image *postgres:14.1-alpine*.
 Pour cela, on reprend le Dockerfile qui défini l'image source ainsi que les variables d'environment (nom de la base de données, le user, le mot de passe), puis on build à l'aide de la commande :
 ```
-docker build -t fcheval/database-tp1 .
+docker build -t pgdb .
 ```
 > NB: le point à la fin de la commande signifie que l'on utilise le Dockerfile qui est là où la commande est exécutée.
 
@@ -21,16 +21,23 @@ Ensuite, on créé le network correspondant avec la commande :
 docker network create app-network
 ```
 
-On lance notre application en précisant bien le network :
+On lance notre application en précisant bien le network avec la commande :
 ```
-docker run -d --net=app-network --name database-tp1 fcheval/database-tp1
+docker run --name pgdb -p 5432:5432 -v volume:/var/lib/postgresql/data --net=app-network -d  pgdb
 ```
-> NB: Le -d permet de le run en background.
+> NB: Le volume sert à obtenir une persistance des données.
 
-Enfin, on lance le container adminer 
+Enfin, on build l'adminer avec la commande :
+```
+docker build -t adminer .
+```
+
+Puis, on le lance avec la commande :
 ```
 docker run -p "8090:8080" --net=app-network --name=adminer -d adminer
 ```
+
+On accède alors à l'interface de la connexion à la base de données via localhost:8090.
 
 ## Backend API
 
