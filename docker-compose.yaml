@@ -2,27 +2,34 @@ version: '3.7'
 
 services:
   backend:
-    build: ./java/backendapi/Dockerfile
+    build :
+     context: ./java/backendapi/simple-api-student-main/
+     dockerfile : Dockerfile
     networks:
       - app-network
+    depends_on:
+    - database
 
-    depends_on: database
 
   database:
-    build: ./postgres/DOCKERFILE
+    build:
+      context : ./postgres/
+      dockerfile: Dockerfile
     volumes:
       - ./postgres/db-data:/var/lib/postgresql/data:rw
     networks:
       - app-network
 
   httpd:
-    build: ./http/Dockerfile
+    build:
+      context : ./http/
+      dockerfile: Dockerfile
     ports:
-      - "80:8080"
+      - "80:80"
     networks:
       - app-network
-    depends_on: backend
-
+    depends_on:
+      - backend
 
 networks:
   app-network:
