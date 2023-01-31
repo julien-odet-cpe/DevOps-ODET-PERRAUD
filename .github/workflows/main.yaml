@@ -34,13 +34,15 @@ jobs:
       - name: Login to DockerHub
         run: docker login -u ${{ secrets.DOCKER_LOGIN }} -p ${{ secrets.DOCKER_PASSWORD }}
                
-      - name: Build image backend
+      - name: Build image and push backend
         uses: docker/build-push-action@v3
         with:
           # relative path to the place where source code with Dockerfile is located
           context: ./java/backendapi/simple-api-student-main
           # Note: tags has to be all lower-case
-          tags: ${{secrets.DOCKER_LOGIN}}/java
+          tags: ${{secrets.DOCKER_LOGIN}}/simple-api
+          push: ${{ github.ref == 'refs/heads/main' }}
+
 
       - name: Build image database
         uses: docker/build-push-action@v3
@@ -49,43 +51,18 @@ jobs:
           context: ./postgres
           #Note: tags has to be all lower-case
           tags: ${{secrets.DOCKER_LOGIN}}/database
+          push: ${{ github.ref == 'refs/heads/main' }}
 
 
-      - name: Build image  httpd
+
+      - name: Build image and push httpd
         uses: docker/build-push-action@v3
         with:
           # relative path to the place where source code with Dockerfile is located
           context: ./http
           # Note: tags has to be all lower-case
           tags: ${{secrets.DOCKER_LOGIN}}/http
+          push: ${{ github.ref == 'refs/heads/main' }}
+
         # DO the same for httpd
 
-      - name: push backend
-        uses: docker/build-push-action@v3
-        with:
-          # relative path to the place where source code with Dockerfile is located
-          context: ./java/backendapi/simple-api-student-main
-          # Note: tags has to be all lower-case
-          tags: ${{secrets.DOCKER_USERNAME}}/java
-          # build on feature branches, push only on main branch
-          push: ${{ github.ref == 'refs/heads/main' }}
-
-      - name:  push http
-        uses: docker/build-push-action@v3
-        with:
-          # relative path to the place where source code with Dockerfile is located
-          context: ./http
-          # Note: tags has to be all lower-case
-          tags: ${{secrets.DOCKER_USERNAME}}/http
-          # build on feature branches, push only on main branch
-          push: ${{ github.ref == 'refs/heads/main' }}
-
-      - name: push database
-        uses: docker/build-push-action@v3
-        with:
-          # relative path to the place where source code with Dockerfile is located
-          context: ./postgres
-          # Note: tags has to be all lower-case
-          tags: ${{secrets.DOCKER_USERNAME}}/database
-          # build on feature branches, push only on main branch
-          push: ${{ github.ref == 'refs/heads/main' }}
