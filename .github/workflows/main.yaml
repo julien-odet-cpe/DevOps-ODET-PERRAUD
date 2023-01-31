@@ -63,7 +63,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           # relative path to the place where source code with Dockerfile is located
-          context: ./simple-api
+          context: ./java/backendapi/simple-api-student-main
           # Note: tags has to be all lower-case
           tags: ${{secrets.DOCKER_USERNAME}}/simple-api
           # build on feature branches, push only on main branch
