@@ -30,3 +30,19 @@ docker run --net=app-network -p 8090:8080 --name pgadmin -d adminer
 FROM openjdk:17-jre
 COPY Main.class /
 RUN java Main
+java :
+docker run --name javabackendapi -p 8080:8080 --net=app-network -d  javabackendapi
+docker build . -t javabackendapi            
+// dans application.yml :
+datasource:
+url: jdbc:postgresql://pgdb:5432/db
+username: usr
+password: pwd
+http :
+<VirtualHost *:80>
+ProxyPreserveHost On
+ProxyPass / http://javabackendapi:8080/
+ProxyPassReverse / http://javabackendapi:8080/
+</VirtualHost>
+docker build . -t http        
+docker run --name http -p 80:80 --net=app-network -d  http
