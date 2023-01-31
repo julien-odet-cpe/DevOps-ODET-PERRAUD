@@ -83,3 +83,8 @@ ProxyPassReverse / http://javabackendapi:8080/
 </VirtualHost>
 docker build . -t http        
 docker run --name http -p 80:80 --net=app-network -d  http
+
+
+docker tag tp-docker-database  alexcpe/database:1.0
+docker push alexcpe/database:1.0
+![img.png](img.png)
