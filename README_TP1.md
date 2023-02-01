@@ -157,7 +157,7 @@ Voir le fichier *docker-compose.yaml* ainsi que ses commentaires
 
 Après le docker login, on taggue l'image :
 ```
-docker tag tp-docker-database alexcpe/database:1.0
+docker tag tp-docker-databasne alexcpe/database:1.0
 ```
 
 On la pousse sur Dockerhub :
