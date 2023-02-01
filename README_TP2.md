@@ -35,6 +35,8 @@ On ajoute ensuite la partie publications.
 
 Voir le fichier *main.yml* commenté.
 
+![DockerHub2.png](DockerHub2.png)
+
 ---
 
 ## **Setup Quality Gate**
@@ -45,4 +47,4 @@ Après avoir créé un compte gratuit SonarCloud et une organisation, nous avons
 
 On peut voir que l'analyse fonctionne :
 ![SonarCloud.png](SonarCloud.png)
-![img.png](img.png)
+
