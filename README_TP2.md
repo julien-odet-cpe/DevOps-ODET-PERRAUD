@@ -45,3 +45,4 @@ Après avoir créé un compte gratuit SonarCloud et une organisation, nous avons
 
 On peut voir que l'analyse fonctionne :
 ![SonarCloud.png](SonarCloud.png)
+![img.png](img.png)
