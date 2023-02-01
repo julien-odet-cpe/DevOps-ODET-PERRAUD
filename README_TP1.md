@@ -1,4 +1,4 @@
-# **TP DevOps - Compte rendu**
+# **TP1 DevOps - Compte rendu**
 
 Filière IRC - 4ème année - Promotion 2024
 
