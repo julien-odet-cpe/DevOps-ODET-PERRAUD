@@ -2,7 +2,7 @@
 
 Filière IRC - 4ème année - Promotion 2024
 
-## Auteur :
+## Auteurs :
 - Julien ODET
 - Alex PERRAUD
 
@@ -136,7 +136,7 @@ docker run --name http -p 80:80 --net=app-network -d  http
 ---
 
 ## **Link application**
-**1-3) Document docker-compose most important commands. 1-4 Document your docker-compose file.**
+**1-3) Document docker-compose most important commands.**
 
 Commandes importantes du docker-compose :
 ```
@@ -145,16 +145,22 @@ docker-compose done -v
 ```
 > NB: -d pour background et -v pour supprimer les volumes
 
+**1-4) Document your docker-compose file.**
+
 Voir le fichier *docker-compose.yaml* ainsi que ses commentaires
+
+---
 
 ## **Publish**
 
 **1-5) Document your publication commands and published images in dockerhub.**
-On taggue l'image :
+
+Après le docker login, on taggue l'image :
 ```
-docker tag tp-docker-database  alexcpe/database:1.0
+docker tag tp-docker-database alexcpe/database:1.0
 ```
 
+On la pousse sur Dockerhub :
 ```
 docker push alexcpe/database:1.0
 ```
