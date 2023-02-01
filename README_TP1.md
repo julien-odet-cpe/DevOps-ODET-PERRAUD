@@ -165,4 +165,4 @@ On la pousse sur Dockerhub :
 docker push alexcpe/database:1.0
 ```
 
-![Dockerhub.png](Dockerhub.png)
+![Dockerhub.png](screenshots/Dockerhub.png)

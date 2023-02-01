@@ -24,10 +24,10 @@ Nous créons ensuite le fichier *main.yml* dans le dossier *.github/workflows*.
 **2-2) Document your Github Actions configurations.**
 
 On constate que tout fonctionne :
-![GitHub_actions.png](GitHub_actions.png)
+![GitHub_actions.png](screenshots/GitHub_actions.png)
 
 On ajoute nos logins DockerHub aux variables d'environnement GitHub Actions :
-![DockerHub_credentials.png](DockerHub_credentials.png)
+![DockerHub_credentials.png](screenshots/DockerHub_credentials.png)
 
 On complète le *main.yaml* pour que nos images Docker soient build dans notre pipeline GitHub Actions.
 
@@ -35,7 +35,7 @@ On ajoute ensuite la partie publications.
 
 Voir le fichier *main.yml* commenté.
 
-![DockerHub2.png](DockerHub2.png)
+![DockerHub2.png](screenshots/DockerHub2.png)
 
 ---
 
@@ -46,5 +46,5 @@ Voir le fichier *main.yml* commenté.
 Après avoir créé un compte gratuit SonarCloud et une organisation, nous avons ajouté SonarCloud avec nos clés au fichier *main.yml* dans le *Build and test with Maven*.
 
 On peut voir que l'analyse fonctionne :
-![SonarCloud.png](SonarCloud.png)
+![SonarCloud.png](screenshots/SonarCloud.png)
 
