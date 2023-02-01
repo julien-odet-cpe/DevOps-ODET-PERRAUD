@@ -1,14 +1,16 @@
-# TP DevOps - Compte rendu
+# **TP1 DevOps - Compte rendu**
 
 Filière IRC - 4ème année - Promotion 2024
 
-## Auteur :
+## Auteurs :
 - Julien ODET
 - Alex PERRAUD
 
 ---
 
-## Database
+## **Database**
+**1-1 Document your database container essentials: commands and Dockerfile.**
+
 Il s'agit de build l'image *postgres:14.1-alpine*.
 Pour cela, on reprend le Dockerfile qui défini l'image source ainsi que les variables d'environment (nom de la base de données, le user, le mot de passe), puis on build à l'aide de la commande :
 ```
@@ -51,7 +53,7 @@ docker run --name pgdb -p 5432:5432 -v volume:/var/lib/postgresql/data --net=app
 ```
 > NB: Le -v sert à obtenir une persistance des données.
 ---
-## Backend API
+## **Backend API**
 On télécharge le JRE Java avec la commande :
 ```
 docker pull openjdk:11-jre
@@ -111,40 +113,56 @@ ENTRYPOINT java -jar myapp.jar
 ```
 
 ---
-## Http server
-Après avoir construit notre Dockerfile,
+## **Http server**
+Après avoir construit notre Dockerfile, on établit la redirection des requêtes sur le conteneur Java. Pour cela, dans le fichier de configuration *http.conf*, du conteneur HTTPD, on met :
+```
+<VirtualHost *:80>
+    ProxyPreserveHost On
+    ProxyPass / http://javabackendapi:8080/
+    ProxyPassReverse / http://javabackendapi:8080/
+</VirtualHost>
+```
 
+Puis on build :
+```
+docker build . -t http
+```
+
+Et on run : 
+```
+docker run --name http -p 80:80 --net=app-network -d  http
+```
 
 ---
 
-### 1-3) Document docker-compose most important commands. 1-4 Document your docker-compose file.
->
+## **Link application**
+**1-3) Document docker-compose most important commands.**
 
-### 1-5) Document your publication commands and published images in dockerhub.
->
+Commandes importantes du docker-compose :
+```
+docker-compose up -d
+docker-compose done -v
+```
+> NB: -d pour background et -v pour supprimer les volumes
 
+**1-4) Document your docker-compose file.**
 
-FROM openjdk:17-jre
-COPY Main.class /
-RUN java Main
-java :
-docker run --name javabackendapi -p 8080:8080 --net=app-network -d  javabackendapi
-docker build . -t javabackendapi            
-// dans application.yml :
-datasource:
-url: jdbc:postgresql://pgdb:5432/db
-username: usr
-password: pwd
-http :
-<VirtualHost *:80>
-ProxyPreserveHost On
-ProxyPass / http://javabackendapi:8080/
-ProxyPassReverse / http://javabackendapi:8080/
-</VirtualHost>
-docker build . -t http        
-docker run --name http -p 80:80 --net=app-network -d  http
+Voir le fichier *docker-compose.yaml* ainsi que ses commentaires
 
+---
 
-docker tag tp-docker-database  alexcpe/database:1.0
+## **Publish**
+
+**1-5) Document your publication commands and published images in dockerhub.**
+
+Après le docker login, on taggue l'image :
+```
+docker tag tp-docker-database alexcpe/database:1.0
+```
+
+On la pousse sur Dockerhub :
+```
 docker push alexcpe/database:1.0
-![img.png](img.png)
+```
+
+![Dockerhub.png](Dockerhub.png)
