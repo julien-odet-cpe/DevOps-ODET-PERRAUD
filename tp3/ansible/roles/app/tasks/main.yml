@@ -1,0 +1,13 @@
+- name: Run backend-green
+  docker_container:
+    name: backend-green
+    image: alexcpe/backend-green:1.0
+    network_mode: app-network
+
+- name: Run backend-blue
+  docker_container:
+    name: backend-blue
+    image: alexcpe/backend-blue:1.0
+    network_mode: app-network
+
+

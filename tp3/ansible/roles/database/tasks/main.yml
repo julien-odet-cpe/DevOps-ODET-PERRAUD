@@ -1,0 +1,9 @@
+- name: Run database
+  docker_container:
+    name: database
+    image: alexcpe/database:1.0
+    network_mode: app-network
+
+
+
+

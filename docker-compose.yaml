@@ -12,6 +12,7 @@ services:
     depends_on:
     - database #Dépendance entre conteneur (le Java a besoin du Database)
 
+
   #Conteneur BDD
   database:
     build:
@@ -33,6 +34,7 @@ services:
       - app-network #Nom du network auquel il appartient
     depends_on:
       - backend #Dépendance entre conteneur (le HTTPD a besoin du Java)
+      - front
 
 networks:
   app-network:

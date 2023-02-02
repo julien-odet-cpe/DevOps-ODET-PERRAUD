@@ -1,0 +1,50 @@
+version: '3.7'
+
+#Liste de tous les containers
+services:
+  #Conteneur Java
+  backend-green:
+    build :
+      context: ../java/backendapi/simple-api-student-main/ #Chemin
+      dockerfile : Dockerfile #Nom du Dockerfile
+    networks:
+      - app-network #Nom du network auquel il appartient
+    depends_on:
+      - database #Dépendance entre conteneur (le Java a besoin du Database)
+
+  backend-blue:
+    build :
+      context: ../java/backendapi/simple-api-student-main/ #Chemin
+      dockerfile : Dockerfile #Nom du Dockerfile
+    networks:
+      - app-network #Nom du network auquel il appartient
+    depends_on:
+      - database #Dépendance entre conteneur (le Java a besoin du Database)
+
+
+  #Conteneur BDD
+  database:
+    build:
+      context : ../postgres/ #Chemin
+      dockerfile: Dockerfile #Nom du Dockerfile
+    volumes:
+      - ../postgres/db-data:/var/lib/postgresql/data:rw #Persistance des données
+    networks:
+      - app-network #Nom du network auquel il appartient
+
+  #Conteneur HTTP server
+  httpd:
+    build:
+      context : ../http/ #Chemin
+      dockerfile: Dockerfile #Nom du Dockerfile
+    ports:
+      - "80:80" #Exposition du port 80 pour la machine
+    networks:
+      - app-network #Nom du network auquel il appartient
+    depends_on:
+      - backend-green #Dépendance entre conteneur (le HTTPD a besoin du Java)
+
+networks:
+  app-network:
+    name: app-network #Nom du network
+    external: true #Pour que le réseau soit créé avant les conteneurs

@@ -1,0 +1,14 @@
+- hosts: all
+  gather_facts: false
+  become: yes
+
+  tasks:
+    - name: Test connection
+      ping:
+  roles :
+    - docker
+    - network
+    - database
+    - app
+    - front
+    - proxy
