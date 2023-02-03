@@ -191,6 +191,48 @@ Il aurait fallu que je réduise la ram des deux Java mais dans tous les cas la V
 ```
 
 ## Load Balancer
-
-
+Voici le code qui a été rajouté  dans l'httpdconf, qui permet de jongler entre les deux saveur backend Java (1 fois sur 2) et égalemment de rediriger les requêtes vers le serveur actif s'il autre ne répond pas ( mets du temps à détecter).
+Grâce à ces deux modules apaches :
+mod_lbmethod_byrequests // obligatoire jongle entre les deux serveurs
+mod_lbmethod_heartbeat // redirige vers le serveur actif s'il autre est down
+```code
+<Proxy "balancer://mycluster">
+		BalancerMember "http://backend-green:8080"
+		BalancerMember "http://backend-blue:8080"
+	</Proxy>
+	ProxyPreserveHost On
+	ProxyPass "/" "balancer://mycluster/"
+	ProxyPassReverse "/" "balancer://mycluster/"
+```
 ## Front
+Ajout du conteneur front dans le docker-compose du tp3.
+```code
+ front:
+    build:
+      context: ../devops-front-main/
+      dockerfile: Dockerfile #Nom du Dockerfile
+    networks:
+      - app-network #Nom du network auquel il appartient
+```
+Mise en place sur le proxy (httpd) sur le port 80 de la redirection sur le front et le port 8080 le Backend Java.
+Le front va requêter ses données sur le javabackend.
+Ajout du nouveau virtual host pour le port 8080 pour rediriger sur le backend java avec load balancing.
+Modification du port 80 en mettant la redirection sur le conteneur Front.
+```code
+ <VirtualHost *:80>
+	ProxyPreserveHost On
+	ProxyPass "/" "http://front:80/"
+	ProxyPassReverse "/" "http://front:80/"
+</VirtualHost>
+
+<VirtualHost *:8080>
+	<Proxy "balancer://mycluster">
+		BalancerMember "http://backend-green:8080"
+		BalancerMember "http://backend-blue:8080"
+	</Proxy>
+	ProxyPreserveHost On
+	ProxyPass "/" "balancer://mycluster/"
+	ProxyPassReverse "/" "balancer://mycluster/"
+</VirtualHost>
+
+```
