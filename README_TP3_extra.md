@@ -92,6 +92,8 @@ Exécution du playbook (playbook.yaml) avec la config de setup.yaml
       tags: docker
 ```
 
+### 3-2 Document your playbook
+
 
 Les playbooks et les rôles ont été vérifiés, durant le déploiement ansible la VM a crash et je n'ai jamais pu réessayer.
 Elle a sûrement crash à cause du Load Balancer, le fait que j'ai deux serveurs JAVA.
